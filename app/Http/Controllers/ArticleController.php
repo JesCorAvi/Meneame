@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreArticleRequest;
-use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -13,7 +12,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        return view('articles.index', ["articles"=>Article::all()]);
     }
 
     /**
@@ -21,15 +20,20 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreArticleRequest $request)
+    public function store(Request $request)
     {
-        //
+         Article::create([
+        'title' => $request->title,
+        'description' => $request->description,
+        'link' => filter_var($request->link),
+        'user_id' => auth()->id()]);
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -45,15 +49,18 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('articles.edit', ['article'=>$article]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateArticleRequest $request, Article $article)
+    public function update(Request $request, Article $article)
     {
-        //
+        $article->update(['title'=>$request->title]);
+        $article->update(['description'=>$request->description]);
+        $article->update(['link'=>$request->link]);
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -61,6 +68,13 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        Article::destroy($article->id);
+        return redirect()->route('articles.index');
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 }
