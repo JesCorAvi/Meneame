@@ -23,6 +23,6 @@ class Article extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
     public function label(){
-        return $this->hasOne(Label::class);
+        return $this->hasMany(Label::class);
     }
 }

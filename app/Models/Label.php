@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Label extends Model
 {
     use HasFactory;
-    public function label(){
+    public function articles(){
         return $this->belongsTo(Article::class);
     }
 }
