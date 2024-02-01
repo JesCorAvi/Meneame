@@ -23,23 +23,25 @@ class ArticleController extends Controller
         return view('articles.create');
     }
 
-    public function upload(Request $request): string
-    {
-        $path = $request->file('image')->store('images');
-
-        return $path;
-    }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-         Article::create([
+        /*
+        $request->validate([
+            'image' => 'required|mimes:jpg',
+        ]);
+        */
+        $image = $request->file('image');
+        $name = $request->titulo . '.jpg';
+        $image->storeAs('uploads', $name, 'public');
+
+        Article::create([
         'title' => $request->title,
         'description' => $request->description,
         'link' => $request->link,
-        'image' => $request->image,
+        'image' => $image,
         'user_id' => auth()->id()]);
         return redirect()->route('articles.index');
     }
