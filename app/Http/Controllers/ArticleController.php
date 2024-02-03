@@ -34,7 +34,7 @@ class ArticleController extends Controller
         ]);
 
         $image = $request->file('file_input');
-        $name = $image->getClientOriginalName();
+        $name = hash('sha256', time() . $image->getClientOriginalName()) . '.' . $image->getClientOriginalExtension();
         $image->storeAs('uploads', $name, 'public');
 
         Article::create([
