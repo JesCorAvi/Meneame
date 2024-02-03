@@ -28,20 +28,20 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        /*
+
         $request->validate([
-            'image' => 'required|mimes:jpg',
+            'file_input' => 'required|mimes:jpg',
         ]);
-        */
-        $image = $request->file('image');
-        $name = $request->titulo . '.jpg';
+
+        $image = $request->file('file_input');
+        $name = $image->getClientOriginalName();
         $image->storeAs('uploads', $name, 'public');
 
         Article::create([
         'title' => $request->title,
         'description' => $request->description,
         'link' => $request->link,
-        'image' => $image,
+        'image' => $name,
         'user_id' => auth()->id()]);
         return redirect()->route('articles.index');
     }
