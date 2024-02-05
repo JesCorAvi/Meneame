@@ -30,11 +30,11 @@ class ArticleController extends Controller
     {
 
         $request->validate([
-            'file_input' => 'required|mimes:jpg',
+            'file_input' => 'required|mimes:jpg,bmp,png,jpeg',
         ]);
 
         $image = $request->file('file_input');
-        $name = hash('sha256', time() . $image->getClientOriginalName()) . '.' . $image->getClientOriginalExtension();
+        $name = hash('sha256', time() . $image->getClientOriginalName()) . ".png";
         $image->storeAs('uploads', $name, 'public');
 
         Article::create([
