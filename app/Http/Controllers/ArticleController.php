@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class ArticleController extends Controller
 {
@@ -36,6 +39,12 @@ class ArticleController extends Controller
         $image = $request->file('file_input');
         $name = hash('sha256', time() . $image->getClientOriginalName()) . ".png";
         $image->storeAs('uploads', $name, 'public');
+
+        $manager = new ImageManager(new Driver());
+        $imageR = $manager->read(Storage::disk('public')->get('uploads/' . $name));
+        $imageR->scaleDown(400); //cambiar esto para ajustar el reescalado de la imagen
+        $rute = Storage::path('public/uploads/' . $name);
+        $imageR->save($rute);
 
         Article::create([
         'title' => $request->title,

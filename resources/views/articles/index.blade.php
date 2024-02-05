@@ -23,7 +23,7 @@
             <td>{{$article->title}}</td>
             <td>{{$article->description}}</td>
             <td><a href="{{$article->link}}">{{$article->link}}</a></td>
-            <td><img width="200px" height="150px" src="{{ asset('storage/uploads/' . $article->image) }}" ></td>
+            <td><img src="{{ asset('storage/uploads/' . $article->image) }}" ></td>
             <td>{{$article->user_id}}</td>
             <td><a href="{{ route('articles.show', $article)}}"><button>Ver</button></a></td>
             <td>
