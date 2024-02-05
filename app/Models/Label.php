@@ -9,6 +9,6 @@ class Label extends Model
 {
     use HasFactory;
     public function articles(){
-        return $this->belongsTo(Article::class);
+        return $this->belongsToMany(Article::class, 'article_label');
     }
 }
