@@ -38,12 +38,12 @@ class ArticleController extends Controller
 
         $image = $request->file('file_input');
         $name = hash('sha256', time() . $image->getClientOriginalName()) . ".png";
-        $image->storeAs('uploads', $name, 'public');
+        $image->storeAs('uploads/articles', $name, 'public');
 
         $manager = new ImageManager(new Driver());
-        $imageR = $manager->read(Storage::disk('public')->get('uploads/' . $name));
+        $imageR = $manager->read(Storage::disk('public')->get('uploads/articles/' . $name));
         $imageR->scaleDown(400); //cambiar esto para ajustar el reescalado de la imagen
-        $rute = Storage::path('public/uploads/' . $name);
+        $rute = Storage::path('public/uploads/articles/' . $name);
         $imageR->save($rute);
 
         Article::create([
