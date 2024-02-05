@@ -30,7 +30,7 @@ class ArticleController extends Controller
     {
 
         $request->validate([
-            'file_input' => 'required|mimes:jpg,bmp,png,jpeg',
+            'file_input' => 'required|mimes:jpg,png,jpeg',
         ]);
 
         $image = $request->file('file_input');
