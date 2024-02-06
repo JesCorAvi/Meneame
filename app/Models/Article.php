@@ -16,15 +16,21 @@ class Article extends Model
         'image',
         'user_id'
         ];
+
     public function user(){
         return $this->belongsTo(User::class);
     }
+
     public function comments(): MorphMany
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    public function meneos(){
-        return $this->belongsToMany(User::class,'article_user');
+    public function label(){
+        return $this->hasMany(Label::class);
+    }
+
+    public function meneadores(){
+        return $this->belongsToMany(User::class, 'article_user');
     }
 }

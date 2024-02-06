@@ -42,6 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
     public function articles(){
         return $this->hasMany(Article::class);
     }
@@ -50,7 +51,7 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function meneos(){
+    public function meneadas(){
         return $this->belongsToMany(Article::class,'article_user');
     }
 }
