@@ -39,7 +39,7 @@
             </ul>
         </header>
         <main>
-            <form class="max-w-md mx-auto mt-5" action="{{ route('articles.store') }}" method="post">
+            <form class="max-w-md mx-auto mt-5" action="{{ route('articles.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-5">
                     <label for="title"
@@ -69,7 +69,6 @@
                     aria-describedby="file_input_help" id="file_input" type="file">
                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX.
                     800x400px).</p>
-
 
                 <button type="submit"
                     class="mt-5 text-white bg-orange-500 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Enviar</button>
