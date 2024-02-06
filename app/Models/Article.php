@@ -27,7 +27,7 @@ class Article extends Model
     }
 
     public function label(){
-        return $this->hasMany(Label::class);
+        return $this->belongsToMany(Label::class, 'article_label');
     }
 
     public function meneadores(){
