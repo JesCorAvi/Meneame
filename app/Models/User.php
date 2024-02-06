@@ -52,6 +52,6 @@ class User extends Authenticatable
     }
 
     public function meneadas(){
-        return $this->belongsToMany(Article::class, 'meneos');
+        return $this->belongsToMany(Article::class,'article_user');
     }
 }

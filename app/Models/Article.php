@@ -13,6 +13,7 @@ class Article extends Model
         'title',
         'description',
         'link',
+        'image',
         'user_id'
         ];
 
@@ -30,6 +31,6 @@ class Article extends Model
     }
 
     public function meneadores(){
-        return $this->belongsToMany(User::class, 'meneos');
+        return $this->belongsToMany(User::class, 'article_user');
     }
 }
