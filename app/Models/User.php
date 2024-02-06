@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    public function meneos(){
+        return $this->belongsToMany(Article::class,'article_user');
+    }
 }

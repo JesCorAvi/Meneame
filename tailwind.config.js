@@ -17,6 +17,9 @@ export default {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
+            backgroundColor: {
+                'naranjita': '#ffe8d8',
+            },
         },
     },
     plugins: [forms, require('flowbite/plugin')],

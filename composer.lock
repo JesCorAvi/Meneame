@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+
     "content-hash": "ed7d619c4649fd17f72d6b034b8b5cdf",
     "packages": [
         {
@@ -1110,6 +1111,7 @@
         },
         {
             "name": "intervention/image",
+
             "version": "3.3.3",
             "source": {
                 "type": "git",
@@ -1120,6 +1122,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Intervention/image/zipball/ad8058f5be94110d72d44958a5e5f4a0705c7471",
                 "reference": "ad8058f5be94110d72d44958a5e5f4a0705c7471",
+
                 "shasum": ""
             },
             "require": {
@@ -1131,7 +1134,9 @@
                 "mockery/mockery": "^1.6",
                 "phpstan/phpstan": "^1",
                 "phpunit/phpunit": "^9",
+
                 "slevomat/coding-standard": "~8.0",
+
                 "squizlabs/php_codesniffer": "^3.8"
             },
             "suggest": {
@@ -1167,6 +1172,7 @@
             "support": {
                 "issues": "https://github.com/Intervention/image/issues",
                 "source": "https://github.com/Intervention/image/tree/3.3.3"
+
             },
             "funding": [
                 {

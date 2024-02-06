@@ -23,4 +23,8 @@ class Article extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function meneos(){
+        return $this->belongsToMany(User::class,'article_user');
+    }
 }
