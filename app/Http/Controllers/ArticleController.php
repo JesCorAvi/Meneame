@@ -33,6 +33,9 @@ class ArticleController extends Controller
     {
 
         $request->validate([
+            'title' => 'required|max:150|min:10',
+            'description' => 'required|max:600|min:10',
+            'link' => 'required|url:http,https|max:300',
             'file_input' => 'required|mimes:jpg,png,jpeg|max:400',
         ]);
 
