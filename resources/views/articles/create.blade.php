@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mostrar</title>
 </head>
+
 <body>
     <x-app-layout>
         <header class="flex h-8 bg-gray-300 ">
@@ -20,18 +21,27 @@
                 <li>
                     <div x-data="{ open: false }" class="relative">
                         <div x-data="{ open: false }" class="relative">
-                            <button @mouseover="open = true" @mouseleave="open = false" class="text-gray-500 focus:outline-none focus:border-gray-700 focus:text-gray-700">
+                            <button @mouseover="open = true" @mouseleave="open = false"
+                                class="text-gray-500 focus:outline-none focus:border-gray-700 focus:text-gray-700">
                                 <p class="text-black">MÁS</p>
                             </button>
-                            <div x-show="open" @mouseover="open = true" @mouseleave="open = false" class="absolute left-rem] w-36 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
+                            <div x-show="open" @mouseover="open = true" @mouseleave="open = false"
+                                class="absolute left-rem] w-36 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
                                 <!-- Contenido del desplegable -->
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100"><strong>TODAS</strong></a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">ACTUALIDAD</a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">CULTURA</a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">OCIO</a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">TECNOLOGIA</a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">M/*</a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">@RSS</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100"><strong>TODAS</strong></a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">ACTUALIDAD</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">CULTURA</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">OCIO</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">TECNOLOGIA</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">M/*</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">@RSS</a>
                             </div>
                         </div>
                     </div>
@@ -39,7 +49,35 @@
             </ul>
         </header>
         <main>
-            <form class="max-w-md mx-auto mt-5" action="{{ route('articles.store') }}" method="post" enctype="multipart/form-data">
+            @if ($errors->any())
+                    <div id="alert-border-2"
+                        class="flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800"
+                        role="alert">
+                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <div class="ms-3 text-sm font-medium">
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}<br>
+                            @endforeach
+
+                        </div>
+                        <button type="button"
+                            class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
+                            data-dismiss-target="#alert-border-2" aria-label="Close">
+                            <span class="sr-only">Dismiss</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                        </button>
+                    </div>
+            @endif
+            <form class="max-w-md mx-auto mt-5" action="{{ route('articles.store') }}" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="mb-5">
                     <label for="title"
@@ -56,23 +94,27 @@
                         placeholder="Escribe aquí la descripción de la noticia"></textarea>
                 </div>
                 <div class="mb-5">
-                    <label for="link" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link</label>
+                    <label for="link"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link</label>
                     <input type="text" name="link" id="link"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                         required>
                 </div>
 
 
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Imagen</label>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    for="file_input">Imagen</label>
                 <input
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     aria-describedby="file_input_help" name="file_input" id="file_input" type="file">
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX.
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF
+                    (MAX.
                     800x400px).</p>
 
                 <button type="submit"
                     class="mt-5 text-white bg-orange-500 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Enviar</button>
             </form>
+
         </main>
     </x-app-layout>
     <footer class="bg-white dark:bg-gray-900">
@@ -132,4 +174,5 @@
         </div>
     </footer>
 </body>
+
 </html>
