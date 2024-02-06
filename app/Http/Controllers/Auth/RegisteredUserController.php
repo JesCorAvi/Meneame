@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class RegisteredUserController extends Controller
 {
@@ -36,10 +39,27 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $image = $request->file('file_input');
+        if(isset($image)){
+            $name = hash('sha256', time() . $image->getClientOriginalName()) . ".png";
+            $image->storeAs('uploads/users', $name, 'public');
+            $manager = new ImageManager(new Driver());
+            $imageR = $manager->read(Storage::disk('public')->get('uploads/users/' . $name));
+            $imageR->scaleDown(200); //cambiar esto para ajustar el reescalado de la imagen
+            $rute = Storage::path('public/uploads/users/' . $name);
+            $imageR->save($rute);
+        }else{
+            $name = "default.png";
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'email' => $request->email,
+            'image' => $name,
+
+
         ]);
 
         event(new Registered($user));
