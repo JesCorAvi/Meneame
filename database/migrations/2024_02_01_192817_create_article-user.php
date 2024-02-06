@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('article_user', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
             $table->foreignId('article_id')->constrained();
-            $table->primary(['user_id','article_id']);
+            $table->string('image');
+            $table->primary(['user_id', 'article_id']);
             $table->timestamps();
         });
     }
