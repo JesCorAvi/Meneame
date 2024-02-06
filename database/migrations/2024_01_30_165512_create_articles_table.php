@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string("title");
             $table->string("description");
             $table->string("link");
+            $table->string("image");
+            $table->integer("click");
             $table->foreignId("user_id")->constrained();
             $table->timestamps();
         });
