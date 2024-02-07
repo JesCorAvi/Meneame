@@ -94,9 +94,4 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
 }
