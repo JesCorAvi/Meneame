@@ -16,10 +16,9 @@
 
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$article->title}}</h5>
 
-
     <div class="text-xs min-h-7">
         <a href="$user-profile" class="inline-block relative opacity-100 z-0 font-inherit cursor-pointer">
-            <img src={{$article->user->image}} class="w-6 h-6 mr-1 inline-block align-middle rounded-full">
+            <img src={{ asset('storage/uploads/users/' . $article->user->image) }} class="w-6 h-6 mr-1 inline-block align-middle rounded-full">
         </a>
         por
          <a href="$perfil" class="inline-block">{{$article->user->name}}</a>
