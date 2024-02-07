@@ -9,10 +9,11 @@
     <title>Mostrar</title>
 </head>
 <body>
+
     <x-app-layout>
         <header class="flex h-8 bg-gray-300 ">
             <ul class="inline-flex text-center ml-96 items-center">
-                <li><a href="" class="text-orange-600 mr-12 borde bg-gray-200 py-1 px-1">PUBLICAR</a></li>
+                <li><a href="{{ route('articles.create') }}" class="text-orange-600 mr-12 borde bg-gray-200 py-1 px-1">PUBLICAR</a></li>
                 <li><a href="" class="text-black mr-12">NUEVAS</a></li>
                 <li><a href="" class="text-black mr-12">ARTÍCULOS</a></li>
                 <li><a href="" class="text-black mr-12">POPULARES</a></li>
@@ -38,8 +39,18 @@
                 </li>
             </ul>
         </header>
+        <main>
+
+        <x-noticia :article="$article"></x-noticia>
+            <x-comentario :objeto="$article"></x-comentario>
+        </main>
+
+        @foreach ($article->comments as $comentario)
+        <x-mostrar_comentario :comentario="$comentario"></x-mostrar_comentario>
+        @endforeach
 
     </x-app-layout>
+
     <footer class="bg-white dark:bg-gray-900">
         <div class="mx-auto w-full max-w-screen-xl">
             <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
@@ -96,5 +107,7 @@
             </div>
         </div>
     </footer>
+
 </body>
 </html>
+

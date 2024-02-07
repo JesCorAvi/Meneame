@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCommentRequest;
-use App\Http\Requests\UpdateCommentRequest;
+use App\Models\Article;
+use Illuminate\Http\Request;
 use App\Models\Comment;
 
 class CommentController extends Controller
@@ -27,9 +27,13 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCommentRequest $request)
+    public function store(Request $request)
     {
-        //
+        $objeto = session('objeto');
+        $objeto->comments()->save(new Comment(['content' =>$request->content,'user_id'=>auth()->id()]));
+        #return redirect()->route('articles.show',$request->objeto);
+        $request->session()->forget('objeto');
+        return redirect()->route('articles.show',$objeto);
     }
 
     /**
@@ -51,7 +55,7 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCommentRequest $request, Comment $comment)
+    public function update(Request $request, Comment $comment)
     {
         //
     }

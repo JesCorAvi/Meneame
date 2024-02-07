@@ -11,6 +11,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['content','user_id','commentable_type','commentable_id'];
+
     public function commentable(): MorphTo
     {
         return $this->morphTo();
