@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -18,7 +19,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('articles.index', ["articles"=>Article::all()]);
+        return view('articles.index', ["articles" => Article::all()]);
     }
 
     /**
@@ -53,11 +54,12 @@ class ArticleController extends Controller
         $imageR->save($rute);
 
         Article::create([
-        'title' => $request->title,
-        'description' => $request->description,
-        'link' => $request->link,
-        'image' => $name,
-        'user_id' => auth()->id()]);
+            'title' => $request->title,
+            'description' => $request->description,
+            'link' => $request->link,
+            'image' => $name,
+            'user_id' => auth()->id()
+        ]);
         return redirect()->route('articles.index');
     }
 
@@ -66,7 +68,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('articles.show', ['article'=>$article]);
+        return view('articles.show', ['article' => $article]);
     }
 
     /**
@@ -74,7 +76,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('articles.edit', ['article'=>$article]);
+        return view('articles.edit', ['article' => $article]);
     }
 
     /**
@@ -82,9 +84,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $article->update(['title'=>$request->title]);
-        $article->update(['description'=>$request->description]);
-        $article->update(['link'=>$request->link]);
+        $article->update(['title' => $request->title]);
+        $article->update(['description' => $request->description]);
+        $article->update(['link' => $request->link]);
         return redirect()->route('articles.index');
     }
 
@@ -99,17 +101,17 @@ class ArticleController extends Controller
 
     public function meneo(Article $article, User $user)
     {
-        if(!isset($article->article_user->user_id ) || !$article->article_user->user_id->contains($user->user_id)){
-            DB::table('article_user')->insert([
-                'user_id' => $user->user_id,
-                'article_id' => $article->article_id,
-            ]);
-        } else{
-            DB::table('article_user')->where('user_id', '=', $user->user_id)->delete();
+        if(!Auth::user()){
+            return redirect()->route('articles.index')->with('message', 'Debes inciar sesion antes de menear las cosas :)');
         }
+        $user = Auth::user();
+
+        if (!$article->meneadores->contains($user)) {
+            $article->meneadores()->attach($user);
+        } else {
+            $article->meneadores()->detach($user);
+        }
+
         return redirect()->route('articles.index');
-
-
     }
-
 }

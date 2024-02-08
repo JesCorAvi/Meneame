@@ -8,12 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mostrar</title>
 </head>
+
 <body>
 
     <x-app-layout>
         <header class="flex h-8 bg-gray-300 ">
             <ul class="inline-flex text-center ml-96 items-center">
-                <li><a href="{{ route('articles.create') }}" class="text-orange-600 mr-12 borde bg-gray-200 py-1 px-1">PUBLICAR</a></li>
+                <li><a href="{{ route('articles.create') }}"
+                        class="text-orange-600 mr-12 borde bg-gray-200 py-1 px-1">PUBLICAR</a></li>
                 <li><a href="" class="text-black mr-12">NUEVAS</a></li>
                 <li><a href="" class="text-black mr-12">ARTÍCULOS</a></li>
                 <li><a href="" class="text-black mr-12">POPULARES</a></li>
@@ -21,18 +23,27 @@
                 <li>
                     <div x-data="{ open: false }" class="relative">
                         <div x-data="{ open: false }" class="relative">
-                            <button @mouseover="open = true" @mouseleave="open = false" class="text-gray-500 focus:outline-none focus:border-gray-700 focus:text-gray-700">
+                            <button @mouseover="open = true" @mouseleave="open = false"
+                                class="text-gray-500 focus:outline-none focus:border-gray-700 focus:text-gray-700">
                                 <p class="text-black">MÁS</p>
                             </button>
-                            <div x-show="open" @mouseover="open = true" @mouseleave="open = false" class="absolute left-rem] w-36 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
+                            <div x-show="open" @mouseover="open = true" @mouseleave="open = false"
+                                class="absolute left-rem] w-36 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
                                 <!-- Contenido del desplegable -->
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100"><strong>TODAS</strong></a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">ACTUALIDAD</a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">CULTURA</a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">OCIO</a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">TECNOLOGIA</a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">M/*</a>
-                                <a href="#" class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">@RSS</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100"><strong>TODAS</strong></a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">ACTUALIDAD</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">CULTURA</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">OCIO</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">TECNOLOGIA</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">M/*</a>
+                                <a href="#"
+                                    class="text-left block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100">@RSS</a>
                             </div>
                         </div>
                     </div>
@@ -40,10 +51,32 @@
             </ul>
         </header>
         <main>
-
-        @foreach ($articles as $article )
-        <x-noticia :article="$article"></x-noticia>
-        @endforeach
+            @if (session('message'))
+                <div id="alert-border-2"
+                    class="flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800"
+                    role="alert">
+                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <div class="ms-3 text-sm font-medium">
+                        {{ session('message') }} </div>
+                    <button type="button"
+                        class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
+                        data-dismiss-target="#alert-border-2" aria-label="Close">
+                        <span class="sr-only">Dismiss</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div>
+            @endif
+            @foreach ($articles as $article)
+                <x-noticia :article="$article"></x-noticia>
+            @endforeach
         </main>
 
     </x-app-layout>
@@ -105,5 +138,5 @@
     </footer>
 
 </body>
-</html>
 
+</html>
