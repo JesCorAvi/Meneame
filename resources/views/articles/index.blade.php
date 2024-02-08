@@ -40,10 +40,10 @@
             </ul>
         </header>
         <main>
-
         @foreach ($articles as $article )
         <x-noticia :article="$article"></x-noticia>
         @endforeach
+        {{ $articles->links() }}
         </main>
 
     </x-app-layout>

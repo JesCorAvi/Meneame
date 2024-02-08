@@ -15,9 +15,12 @@ use App\Models\Article;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-    return view('articles.index',['articles'=>Article::all()]);
+    $Articles = Article::orderBy('created_at', 'asc')->Paginate(3);
+
+    return view('articles.index', [
+        'articles' => $Articles
+    ]);
 });
 
 Route::get('/dashboard', function () {
@@ -32,6 +35,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('articles', ArticleController::class)->only(['create','store','edit','update','destroy']);
 
 });
-
 
 require __DIR__.'/auth.php';
