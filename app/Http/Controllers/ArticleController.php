@@ -101,9 +101,6 @@ class ArticleController extends Controller
 
     public function meneo(Article $article, User $user)
     {
-        if(!Auth::user()){
-            return redirect()->route('articles.index')->with('message', 'Debes inciar sesion antes de menear las cosas :)');
-        }
         $user = Auth::user();
 
         if (!$article->meneadores->contains($user)) {
