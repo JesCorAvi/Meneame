@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\User;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -92,6 +95,21 @@ class ArticleController extends Controller
     {
         Article::destroy($article->id);
         return redirect()->route('articles.index');
+    }
+
+    public function meneo(Article $article, User $user)
+    {
+        if(!isset($article->article_user->user_id ) || !$article->article_user->user_id->contains($user->user_id)){
+            DB::table('article_user')->insert([
+                'user_id' => $user->user_id,
+                'article_id' => $article->article_id,
+            ]);
+        } else{
+            DB::table('article_user')->where('user_id', '=', $user->user_id)->delete();
+        }
+        return redirect()->route('articles.index');
+
+
     }
 
 }

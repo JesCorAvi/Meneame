@@ -5,7 +5,7 @@
             <a href=# class="leading-none ga-event text-orange-500 no-underline text-base font-bold">{{$article->meneadores->count()}} meneos</a>
         </div>
         <div class="overflow-visible w-16 absolute top-18">
-            <a href=# class="overflow-hidden  bg-gradient-to-r from-orange-500 to-orange-600 shadow-md border border-orange-900 p-1 block text-white no-underline font-bold ">menéalo</a>
+            <a href="{{ route('articles.meneo', ['article'=> $article,"user"=> $article->user]) }}" class="overflow-hidden  bg-gradient-to-r from-orange-500 to-orange-600 shadow-md border border-orange-900 p-1 block text-white no-underline font-bold ">menéalo</a>
         </div>
         <div class="clics py-1 border border-white border-t-0 text-10 bg-repeat-x bg-position-bottom rounded-b-3 font-bold pt-8">
             <span>{{$article->click}}</span> clics
