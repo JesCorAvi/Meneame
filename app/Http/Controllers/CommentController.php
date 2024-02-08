@@ -29,11 +29,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $objeto = session('objeto');
+        if($request->comment ==null){
+        $objeto = Article::find($request->article);
+        }
+        else{
+            $objeto = Comment::find($request->comment);
+        }
+
         $objeto->comments()->save(new Comment(['content' =>$request->content,'user_id'=>auth()->id()]));
-        #return redirect()->route('articles.show',$request->objeto);
-        $request->session()->forget('objeto');
-        return redirect()->route('articles.show',$objeto);
+        return redirect()->route('articles.show',Article::find($request->article));
     }
 
     /**
@@ -67,4 +71,5 @@ class CommentController extends Controller
     {
         //
     }
+
 }

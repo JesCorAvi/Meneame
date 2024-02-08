@@ -23,4 +23,8 @@
             Reply
         </button>
     </div>
+    <x-comentario :comment="$comentario" :article="$article"></x-comentario>
+    @php
+        generar_comentarios($comentario);
+    @endphp
 </article>

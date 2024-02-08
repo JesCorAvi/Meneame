@@ -42,11 +42,12 @@
         <main>
 
         <x-noticia :article="$article"></x-noticia>
-            <x-comentario :objeto="$article"></x-comentario>
+        @auth
+        <x-comentario :comment="null" :article="$article"></x-comentario>
+        @endauth
         </main>
-
         @foreach ($article->comments as $comentario)
-        <x-mostrar_comentario :comentario="$comentario"></x-mostrar_comentario>
+        <x-mostrar_comentario :article="$article" :comentario="$comentario"></x-mostrar_comentario>
         @endforeach
 
     </x-app-layout>
