@@ -26,6 +26,8 @@ Route::get('/dashboard', function () {
 
 Route::resource('articles', ArticleController::class);
 Route::put('articles/{article}/meneo', [ArticleController::class, 'meneo'])->name('articles.meneo')->middleware("auth");
+Route::get('articles/{article}/click', [ArticleController::class, 'click'])->name('articles.click');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
