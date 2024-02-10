@@ -14,6 +14,7 @@ class Article extends Model
         'description',
         'link',
         'image',
+        'click',
         'user_id'
         ];
 

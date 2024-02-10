@@ -111,4 +111,12 @@ class ArticleController extends Controller
 
         return redirect()->route('articles.index');
     }
+    public function click(Article $article)
+    {
+            $article->increment("click");
+            $article->save();
+
+
+        return redirect()->away($article->link);
+    }
 }
