@@ -1,4 +1,4 @@
-<section class=" dark:bg-gray-900 py-8 lg:py-16">
+<section class="dark:bg-gray-900 py-8 lg:py-16 {{$comment !=null ? 'hidden' : ''}}" id="formulario{{$comment !=null ? $comment->id : 'aiudamecristo'}}">
             <div class="max-w-5xl mx-auto px-4">
                 <div class="flex justify-between items-center mb-6">
                   <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Comentar</h2>

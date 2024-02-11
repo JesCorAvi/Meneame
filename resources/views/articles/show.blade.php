@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/comments.js'])
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -48,6 +48,8 @@
         </main>
         @foreach ($article->comments as $comentario)
         <x-mostrar_comentario :article="$article" :comentario="$comentario"></x-mostrar_comentario>
+        {{generar_comentarios($comentario,$article,0)}}
+
         @endforeach
 
     </x-app-layout>
