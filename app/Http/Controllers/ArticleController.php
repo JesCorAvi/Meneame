@@ -99,7 +99,7 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
 
-    public function meneo(Article $article, User $user)
+    public function meneo(Article $article)
     {
         $user = Auth::user();
 
@@ -111,6 +111,7 @@ class ArticleController extends Controller
 
         return redirect()->route('articles.index');
     }
+
     public function click(Article $article)
     {
             $article->increment("click");
