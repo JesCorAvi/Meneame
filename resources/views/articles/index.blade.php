@@ -43,7 +43,9 @@
         @foreach ($articles as $article )
         <x-noticia :article="$article"></x-noticia>
         @endforeach
-        {{ $articles->links() }}
+        <div class="absolute left-2/4 p-2">
+            {{ $articles->links() }}
+        </div>
         </main>
 
     </x-app-layout>
