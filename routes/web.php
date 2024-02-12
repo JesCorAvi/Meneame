@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Models\Article;
 
 /*
@@ -15,9 +16,12 @@ use App\Models\Article;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-    return view('articles.index',['articles'=>Article::all()]);
+    $Articles = Article::orderBy('created_at', 'asc')->Paginate(3);
+
+    return view('articles.index', [
+        'articles' => $Articles
+    ]);
 });
 
 Route::get('/dashboard', function () {
@@ -25,8 +29,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('articles', ArticleController::class);
+
 Route::put('articles/{article}/meneo', [ArticleController::class, 'meneo'])->name('articles.meneo')->middleware("auth");
 Route::get('articles/{article}/click', [ArticleController::class, 'click'])->name('articles.click');
+
+Route::resource('comments', CommentController::class);
 
 
 Route::middleware('auth')->group(function () {
@@ -36,6 +43,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('articles', ArticleController::class)->only(['create','store','edit','update','destroy']);
 
 });
-
 
 require __DIR__.'/auth.php';
