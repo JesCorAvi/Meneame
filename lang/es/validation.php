@@ -115,7 +115,7 @@ return [
     'timezone'             => 'El campo :attribute debe ser una zona horaria válida.',
     'unique'               => 'El valor del campo :attribute ya está en uso.',
     'uploaded'             => 'El campo :attribute no se pudo subir.',
-    'url'                  => 'El formato del campo :attribute es inválido.',
+    'url'                  => 'El formato del campo "Link" es inválido.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
 
     /*
@@ -130,9 +130,15 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'file_input' => [
+            'required' => 'El campo "Imagen" es obligatorio.',
         ],
+        'description' => [
+            'min' => 'El campo "Descripción" debe contener al menos :min caracteres.'
+        ],
+        'title' => [
+            'min' => 'El campo "Titulo" debe contener al menos :min caracteres.'
+        ]
     ],
 
     /*

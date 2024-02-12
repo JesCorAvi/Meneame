@@ -16,10 +16,9 @@
 
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$article->title}}</h5>
 
-
     <div class="text-xs min-h-7">
         <a href="$user-profile" class="inline-block relative opacity-100 z-0 font-inherit cursor-pointer">
-            <img src={{$article->user->image}} class="w-6 h-6 mr-1 inline-block align-middle rounded-full">
+            <img src={{ asset('storage/uploads/users/' . $article->user->image) }} class="w-6 h-6 mr-1 inline-block align-middle rounded-full">
         </a>
         por
          <a href="$perfil" class="inline-block">{{$article->user->name}}</a>
@@ -36,7 +35,7 @@
 </div>
 <div class="h-8 ml-28 text-sm border-t border-b border-orange-200 w-full">
     <div class="mt-1">
-        <a href="{{route('articles.show',$article)}}" class="bg-naranjita text-orange-500 pointer cursor-pointer p-1 pt-1.5 pb-2 pl-2 pr-4 font-bold">{{$article->comments->count()}} comentarios</a>
+        <a href="{{route('articles.show',$article)}}" class="bg-naranjita text-orange-500 pointer cursor-pointer p-1 pt-1.5 pb-2 pl-2 pr-4 font-bold">{{$article->contar_comentarios()}} comentarios</a>
         <a class=" text-orange-400 border-r border-orange-300 p-1 pl-3 pr-3">compartir</a>
         @foreach ($article->label as $label )
         <a class="p-1 pl-2 pr-2 bg-gray-400 text-white rounded-full text-xs">{{$label->nombre}}</a>
