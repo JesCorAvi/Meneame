@@ -33,4 +33,18 @@ class Article extends Model
     public function meneadores(){
         return $this->belongsToMany(User::class, 'article_user');
     }
+    public function contar_comentarios($comments = null)
+    {
+        if ($comments === null) {
+            $comments = $this->comments;
+        }
+
+        $totalComentarios = $comments->count();
+
+        foreach ($comments as $comment) {
+            $totalComentarios += $this->contar_comentarios($comment->comments);
+        }
+
+        return $totalComentarios;
+    }
 }
