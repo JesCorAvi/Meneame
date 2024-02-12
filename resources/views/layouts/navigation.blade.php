@@ -56,10 +56,10 @@
             </div>
             @endauth
             @guest
-            <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+            <x-nav-link :href="route('login')" class="text-white absolute right-48 mt-4" :active="request()->routeIs('login')">
                 Login
             </x-nav-link>
-            <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+            <x-nav-link :href="route('register')" class="text-white absolute right-24 mt-4" :active="request()->routeIs('register')">
                 register
             </x-nav-link>
 
