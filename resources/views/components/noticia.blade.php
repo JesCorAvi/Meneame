@@ -5,7 +5,11 @@
             <a href=# class="leading-none ga-event text-orange-500 no-underline text-base font-bold">{{$article->meneadores->count()}} meneos</a>
         </div>
         <div class="overflow-visible w-16 absolute top-18">
-            <a href=# class="overflow-hidden  bg-gradient-to-r from-orange-500 to-orange-600 shadow-md border border-orange-900 p-1 block text-white no-underline font-bold ">menéalo</a>
+            <form action="{{ route('articles.meneo', ['article' => $article]) }}" method="POST">
+                @csrf
+                @method("PUT")
+                <button type="submit" class="overflow-hidden  bg-gradient-to-r from-orange-500 to-orange-600 shadow-md border border-orange-900 p-1 block text-white h-6 w-16 ">menéalo</button>
+            </form>
         </div>
         <div class="clics py-1 border border-white border-t-0 text-10 bg-repeat-x bg-position-bottom rounded-b-3 font-bold pt-8">
             <span>{{$article->click}}</span> clics
@@ -14,11 +18,11 @@
 
 <div class="flex flex-col justify-between p-4 pl-28 pr-40 leading-normal">
 
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$article->title}}</h5>
+    <a href="{{ route('articles.click', ['article' => $article]) }}"><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$article->title}}</h5></a>
 
     <div class="text-xs min-h-7">
         <a href="$user-profile" class="inline-block relative opacity-100 z-0 font-inherit cursor-pointer">
-            <img src={{ asset('storage/uploads/users/' . $article->user->image) }} class="w-6 h-6 mr-1 inline-block align-middle rounded-full">
+            <img src={{ asset($article->user->image) }} class="w-6 h-6 mr-1 inline-block align-middle rounded-full">
         </a>
         por
          <a href="$perfil" class="inline-block">{{$article->user->name}}</a>

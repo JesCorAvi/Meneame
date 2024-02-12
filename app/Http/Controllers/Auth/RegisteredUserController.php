@@ -48,8 +48,11 @@ class RegisteredUserController extends Controller
             $imageR->scaleDown(200); //cambiar esto para ajustar el reescalado de la imagen
             $rute = Storage::path('public/uploads/users/' . $name);
             $imageR->save($rute);
+            $row = "storage/uploads/users/" . $name;
+
         }else{
             $name = "default.png";
+            $row = $name;
         }
 
         $user = User::create([
@@ -57,7 +60,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'email' => $request->email,
-            'image' => $name,
+            'image' => $row,
 
 
         ]);

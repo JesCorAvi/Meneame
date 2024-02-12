@@ -32,8 +32,9 @@ class ImageController extends Controller
             $imageR->scaleDown(200); //cambiar esto para ajustar el reescalado de la imagen
             $rute = Storage::path('public/uploads/users/' . $name);
             $imageR->save($rute);
+            $row = "storage/uploads/users/" . $name;
 
-            $request->user()->update(['image'=>$name]);
+            $request->user()->update(['image'=> $row ]);
             return back()->with('status', 'image-updated');
         }else{
             return back()->with('status', 'image-noupdated');
