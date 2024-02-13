@@ -26,8 +26,10 @@
         </a>
         por
          <a href="$perfil" class="inline-block">{{$article->user->name}}</a>
+        a
+        <a href="{{$article->link}}" class="font-bold">fuente</a>
         &nbsp;
-        Publicado:
+        publicado:
         <span class="inline-block">{{$article->created_at}}</span>
 
     </div>
