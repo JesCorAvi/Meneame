@@ -12,7 +12,7 @@
 <body>
 
     <x-app-layout>
-        <header class="flex h-8 bg-gray-300 ">
+        <header class="bg-gray-300 ">
             <ul class="inline-flex text-center ml-96 items-center">
                 <li><a href="{{ route('articles.create') }}"
                         class="text-orange-600 mr-12 borde bg-gray-200 py-1 px-1">PUBLICAR</a></li>
@@ -62,12 +62,7 @@
     </x-app-layout>
     <footer class="bg-white dark:bg-gray-900">
         <div class="mx-auto w-full max-w-screen-xl">
-            <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
-                <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"></h2>
-                    <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                    </ul>
-                </div>
+            <div class="grid grid-cols-2 gap-8 px-8 py-6 lg:py-8 md:grid-cols-3">
                 <div>
                     <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Ayuda</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">

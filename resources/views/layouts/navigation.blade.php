@@ -14,7 +14,7 @@
                 <!-- Navigation Links ESTO HA SIDO CAMBIADO-->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
-                        {{ __('PÁGINA GENERAL') }}
+                        {{ __('EDICIÓN GENERAL') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -38,7 +38,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Perfil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -48,7 +48,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Cerrar Sesión') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -60,7 +60,7 @@
                 Login
             </x-nav-link>
             <x-nav-link :href="route('register')" class="text-white absolute right-24 mt-4" :active="request()->routeIs('register')">
-                register
+                Registrarse
             </x-nav-link>
 
             @endguest
