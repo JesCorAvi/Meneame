@@ -60,7 +60,7 @@
                 Login
             </x-nav-link>
             <x-nav-link :href="route('register')" class="text-white absolute right-24 mt-4" :active="request()->routeIs('register')">
-                Register
+                Registrarse
             </x-nav-link>
 
             @endguest
