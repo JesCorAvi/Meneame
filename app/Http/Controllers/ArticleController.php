@@ -122,4 +122,9 @@ class ArticleController extends Controller
 
         return redirect()->away($article->link);
     }
+
+    public function fuente(Article $article)
+    {
+    return (substr($article->link, strpos($article->link, "//")+2))/*,(strpos($article->link, "/")-1))*/;
+    }
 }
